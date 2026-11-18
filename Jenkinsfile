@@ -57,3 +57,17 @@ pipeline {
         }
     }
 }
+    post {
+        always {
+            emailext(
+                to: 'qasimalik@gmail.com',
+                subject: "FA23-BDS-019 - Jenkins Build #${BUILD_NUMBER} - ${currentBuild.currentResult}",
+                body: """
+Student ID: FA23-BDS-019
+Build Number: ${BUILD_NUMBER}
+Build Status: ${currentBuild.currentResult}
+Build URL: ${BUILD_URL}
+"""
+            )
+        }
+    }
